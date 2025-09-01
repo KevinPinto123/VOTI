@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - VOTI</title>
+    <link rel="stylesheet" href="login-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Background Elements -->
+        <div class="background-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-card">
+            <!-- Logo Section -->
+            <div class="login-header">
+                <div class="logo-container">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232563eb'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='32' font-weight='bold'%3EV%3C/text%3E%3C/svg%3E" alt="VOTI Logo" class="logo">
+                    <h1>VOTI</h1>
+                </div>
+                <p class="login-subtitle">Información política clara, neutral y verificada</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-form">
+                <h2>Iniciar Sesión</h2>
+                <p class="form-description">Accede a información política confiable y neutral</p>
+
+                <!-- Social Login Options -->
+                <div class="social-login">
+                    <button class="social-btn google-btn" onclick="loginWithGoogle()">
+                        <i class="fab fa-google"></i>
+                        Continuar con Google
+                    </button>
+                    
+                    <button class="social-btn facebook-btn" onclick="loginWithFacebook()">
+                        <i class="fab fa-facebook-f"></i>
+                        Continuar con Facebook
+                    </button>
+                </div>
+
+                <div class="divider">
+                    <span>o</span>
+                </div>
+
+                <!-- Login Tabs -->
+                <div class="login-tabs">
+                    <button class="tab-btn active" data-tab="email" onclick="switchLoginTab('email')">
+                        <i class="fas fa-envelope"></i>
+                        Correo
+                    </button>
+                    <button class="tab-btn" data-tab="phone" onclick="switchLoginTab('phone')">
+                        <i class="fas fa-phone"></i>
+                        Teléfono
+                    </button>
+                </div>
+
+                <!-- Email Login Form -->
+                <form id="email-form" class="login-tab-content active">
+                    <div class="input-group">
+                        <label for="email">Correo electrónico</label>
+                        <div class="input-container">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" placeholder="tu@correo.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Contraseña</label>
+                        <div class="input-container">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Tu contraseña" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            Recordarme
+                        </label>
+                        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn" onclick="loginWithEmail()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Iniciar Sesión
+                    </button>
+                </form>
+
+                <!-- Phone Login Form -->
+                <form id="phone-form" class="login-tab-content">
+                    <div class="input-group">
+                        <label for="phone">Número de teléfono</label>
+                        <div class="input-container">
+                            <select class="country-code">
+                                <option value="+51">🇵🇪 +51</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+34">🇪🇸 +34</option>
+                            </select>
+                            <input type="tel" id="phone" placeholder="999 999 999" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="login-btn" onclick="loginWithPhone()">
+                        <i class="fas fa-sms"></i>
+                        Enviar código SMS
+                    </button>
+                    
+                    <!-- SMS Verification (hidden initially) -->
+                    <div id="sms-verification" class="sms-verification" style="display: none;">
+                        <div class="input-group">
+                            <label for="sms-code">Código de verificación</label>
+                            <div class="sms-inputs">
+                                <input type="text" maxlength="1" class="sms-digit" oninput="moveSMSFocus(this, 0)">
+                                <input type="text" maxlength="1" class="sms-digit" oninput="moveSMSFocus(this, 1)">
+                                <input type="text" maxlength="1" class="sms-digit" oninput="moveSMSFocus(this, 2)">
+                                <input type="text" maxlength="1" class="sms-digit" oninput="moveSMSFocus(this, 3)">
+                                <input type="text" maxlength="1" class="sms-digit" oninput="moveSMSFocus(this, 4)">
+                                <input type="text" maxlength="1" class="sms-digit" oninput="moveSMSFocus(this, 5)">
+                            </div>
+                        </div>
+                        <button type="button" class="verify-btn" onclick="verifySMSCode()">
+                            <i class="fas fa-check"></i>
+                            Verificar código
+                        </button>
+                        <p class="resend-text">
+                            ¿No recibiste el código? 
+                            <a href="#" onclick="resendSMSCode()">Reenviar</a>
+                        </p>
+                    </div>
+                </form>
+
+                <!-- Register Link -->
+                <div class="register-link">
+                    <p>¿No tienes cuenta? <a href="#" onclick="showRegisterForm()">Regístrate aquí</a></p>
+                </div>
+
+                <!-- Security Notice -->
+                <div class="security-notice">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="security-text">
+                        <h4>Tu información está segura</h4>
+                        <p>Utilizamos encriptación de extremo a extremo y nunca compartimos tus datos personales.</p>
+                    </div>
+                </div>
+
+                <!-- Accessibility Options -->
+                <div class="accessibility-options">
+                    <h4>Opciones de Accesibilidad</h4>
+                    <div class="accessibility-buttons">
+                        <button class="accessibility-btn" onclick="increaseTextSize()">
+                            <i class="fas fa-text-height"></i>
+                            Texto más grande
+                        </button>
+                        <button class="accessibility-btn" onclick="toggleHighContrast()">
+                            <i class="fas fa-adjust"></i>
+                            Alto contraste
+                        </button>
+                        <button class="accessibility-btn" onclick="enableScreenReader()">
+                            <i class="fas fa-volume-up"></i>
+                            Lector de pantalla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <button class="lang-btn" onclick="changeLanguage('es')">
+                <span class="flag">🇵🇪</span>
+                Español
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('qu')">
+                <span class="flag">🏔️</span>
+                Quechua
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('ay')">
+                <span class="flag">🌄</span>
+                Aimara
+            </button>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>Iniciando sesión...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login-script.js"></script>
+</body>
+</html>

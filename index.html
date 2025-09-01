@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOTI - Información Política Clara y Verificada</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="nav-brand">
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232563eb'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='32' font-weight='bold'%3EV%3C/text%3E%3C/svg%3E"
+            alt="VOTI Logo"
+            class="logo"
+          />
+          <span class="brand-name">VOTI</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#problema" data-text="nav-problema">Problema</a></li>
+          <li><a href="#solucion" data-text="nav-solucion">Solución</a></li>
+          <li>
+            <a href="#candidatos" data-text="nav-candidatos">Candidatos 2026</a>
+          </li>
+          <li><a href="#demo" data-text="nav-demo">Demo</a></li>
+          <li><a href="#impacto" data-text="nav-impacto">Impacto</a></li>
+          <li><a href="#equipo" data-text="nav-equipo">Equipo</a></li>
+        </ul>
+
+        <!-- Controls -->
+        <div class="nav-controls">
+          <!-- Theme Toggle -->
+          <button
+            class="control-btn theme-toggle"
+            onclick="toggleTheme()"
+            title="Cambiar tema"
+          >
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
+
+          <!-- Language Selector -->
+          <div class="language-dropdown">
+            <button
+              class="control-btn lang-toggle"
+              onclick="toggleLanguageMenu()"
+            >
+              <span class="current-lang" id="current-lang">🇵🇪 ES</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="lang-menu" id="lang-menu">
+              <button class="lang-option" onclick="changeMainLanguage('es')">
+                <span class="flag">🇵🇪</span>
+                <span data-text="lang-spanish">Español</span>
+              </button>
+              <button class="lang-option" onclick="changeMainLanguage('qu')">
+                <span class="flag">🏔️</span>
+                <span data-text="lang-quechua">Quechua</span>
+              </button>
+              <button class="lang-option" onclick="changeMainLanguage('ay')">
+                <span class="flag">🌄</span>
+                <span data-text="lang-aimara">Aimara</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- User Menu -->
+          <div class="user-menu">
+            <button class="control-btn user-toggle" onclick="toggleUserMenu()">
+              <i class="fas fa-user-circle"></i>
+            </button>
+            <div class="user-dropdown" id="user-menu">
+              <div class="user-info">
+                <div class="user-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                  <span class="user-name" data-text="user-welcome"
+                    >Usuario Demo</span
+                  >
+                  <span class="user-email">demo@voti.pe</span>
+                </div>
+              </div>
+              <div class="user-actions">
+                <button class="user-action" onclick="showProfile()">
+                  <i class="fas fa-user-cog"></i>
+                  <span data-text="user-profile">Mi Perfil</span>
+                </button>
+                <button class="user-action" onclick="showSettings()">
+                  <i class="fas fa-cog"></i>
+                  <span data-text="user-settings">Configuración</span>
+                </button>
+                <button class="user-action" onclick="logout()">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span data-text="user-logout">Cerrar Sesión</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title" data-text="hero-title">
+          Información política clara, neutral y verificada con IA
+        </h1>
+        <p class="hero-subtitle" data-text="hero-subtitle">
+          Empodera tu voto con información confiable y accesible para todos los
+          peruanos
+        </p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="scrollToDemo()">
+            <i class="fas fa-play"></i>
+            <span data-text="hero-demo-btn">Probar MVP</span>
+          </button>
+          <button
+            class="btn btn-secondary"
+            onclick="scrollToSection('solucion')"
+          >
+            <i class="fas fa-info-circle"></i>
+            <span data-text="hero-info-btn">Conocer más</span>
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-cards">
+          <div class="card card-1">
+            <i class="fas fa-vote-yea"></i>
+            <span data-text="hero-card-1">Voto Informado</span>
+          </div>
+          <div class="card card-2">
+            <i class="fas fa-balance-scale"></i>
+            <span data-text="hero-card-2">Neutral</span>
+          </div>
+          <div class="card card-3">
+            <i class="fas fa-language"></i>
+            <span data-text="hero-card-3">Inclusivo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problema Section -->
+    <section id="problema" class="section problema">
+      <div class="container">
+        <h2 class="section-title">El Problema</h2>
+        <div class="problema-grid">
+          <div class="problema-item">
+            <div class="problema-icon">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Desinformación Política</h3>
+            <p>
+              Noticias falsas y sesgadas dificultan la toma de decisiones
+              informadas
+            </p>
+          </div>
+          <div class="problema-item">
+            <div class="problema-icon">
+              <i class="fas fa-user-slash"></i>
+            </div>
+            <h3>Apatía Juvenil</h3>
+            <p>
+              Los jóvenes se alejan de la política por falta de información
+              clara y accesible
+            </p>
+          </div>
+          <div class="problema-item">
+            <div class="problema-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <h3>Barrera Idiomática</h3>
+            <p>
+              Información política no disponible en lenguas nativas del Perú
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Candidatos Section -->
+    <section id="candidatos" class="section candidatos">
+      <div class="container">
+        <h2 class="section-title" data-text="candidates-title">
+          Candidatos Presidenciales 2026
+        </h2>
+        <p class="section-subtitle" data-text="candidates-subtitle">
+          Conoce las propuestas y trayectorias de los principales candidatos de
+          manera objetiva y verificada
+        </p>
+
+        <!-- Filtros -->
+        <div class="candidates-filters">
+          <div class="filter-group">
+            <label data-text="filter-party">Partido:</label>
+            <select id="partyFilter" onchange="filterCandidates()">
+              <option value="all" data-text="filter-all">Todos</option>
+              <option value="centro">Centro</option>
+              <option value="izquierda">Izquierda</option>
+              <option value="derecha">Derecha</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label data-text="filter-region">Región:</label>
+            <select id="regionFilter" onchange="filterCandidates()">
+              <option value="all" data-text="filter-all">Todas</option>
+              <option value="lima">Lima</option>
+              <option value="cusco">Cusco</option>
+              <option value="arequipa">Arequipa</option>
+              <option value="piura">Piura</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <input
+              type="text"
+              id="candidateSearch"
+              placeholder="Buscar candidato..."
+              onkeyup="searchCandidates()"
+            />
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+
+        <!-- Grid de Candidatos -->
+        <div class="candidates-grid" id="candidatesGrid">
+          <!-- Candidato 1 -->
+          <div class="candidate-card" data-party="centro" data-region="lima">
+            <div class="candidate-header">
+              <div class="candidate-photo">
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23e5e7eb'/%3E%3Ccircle cx='100' cy='80' r='30' fill='%236b7280'/%3E%3Cpath d='M40 160 Q100 120 160 160' fill='%236b7280'/%3E%3C/svg%3E"
+                  alt="María González"
+                />
+              </div>
+              <div class="candidate-info">
+                <h3 class="candidate-name">María González</h3>
+                <p class="candidate-party">Partido del Centro</p>
+                <div class="candidate-stats">
+                  <span class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>23% intención</span>
+                  </span>
+                  <span class="stat">
+                    <i class="fas fa-users"></i>
+                    <span>15 años exp.</span>
+                  </span>
+                </div>
+              </div>
+              <div class="candidate-actions">
+                <button
+                  class="action-btn favorite"
+                  onclick="toggleFavorite(this)"
+                >
+                  <i class="far fa-heart"></i>
+                </button>
+                <button
+                  class="action-btn compare"
+                  onclick="addToCompare('maria-gonzalez')"
+                >
+                  <i class="fas fa-balance-scale"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-proposals">
+              <h4 data-text="proposals-title">Principales Propuestas:</h4>
+              <div class="proposals-grid">
+                <div class="proposal-item">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>Educación gratuita hasta universidad</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-heartbeat"></i>
+                  <span>Sistema de salud universal</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-seedling"></i>
+                  <span>Transición energética verde</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-balance-scale"></i>
+                  <span>Reforma del sistema judicial</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="candidate-footer">
+              <button
+                class="btn btn-outline"
+                onclick="showCandidateDetails('maria-gonzalez')"
+              >
+                <i class="fas fa-info-circle"></i>
+                <span data-text="view-details">Ver Detalles</span>
+              </button>
+              <button
+                class="btn btn-primary"
+                onclick="startCandidateChat('maria-gonzalez')"
+              >
+                <i class="fas fa-comments"></i>
+                <span data-text="ask-ai">Preguntar a IA</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Candidato 2 -->
+          <div
+            class="candidate-card"
+            data-party="izquierda"
+            data-region="cusco"
+          >
+            <div class="candidate-header">
+              <div class="candidate-photo">
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23fef3c7'/%3E%3Ccircle cx='100' cy='80' r='30' fill='%23d97706'/%3E%3Cpath d='M40 160 Q100 120 160 160' fill='%23d97706'/%3E%3C/svg%3E"
+                  alt="Carlos Mamani"
+                />
+              </div>
+              <div class="candidate-info">
+                <h3 class="candidate-name">Carlos Mamani</h3>
+                <p class="candidate-party">Movimiento Indígena</p>
+                <div class="candidate-stats">
+                  <span class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>18% intención</span>
+                  </span>
+                  <span class="stat">
+                    <i class="fas fa-users"></i>
+                    <span>12 años exp.</span>
+                  </span>
+                </div>
+              </div>
+              <div class="candidate-actions">
+                <button
+                  class="action-btn favorite"
+                  onclick="toggleFavorite(this)"
+                >
+                  <i class="far fa-heart"></i>
+                </button>
+                <button
+                  class="action-btn compare"
+                  onclick="addToCompare('carlos-mamani')"
+                >
+                  <i class="fas fa-balance-scale"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-proposals">
+              <h4 data-text="proposals-title">Principales Propuestas:</h4>
+              <div class="proposals-grid">
+                <div class="proposal-item">
+                  <i class="fas fa-mountain"></i>
+                  <span>Derechos territoriales indígenas</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-leaf"></i>
+                  <span>Protección del medio ambiente</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-language"></i>
+                  <span>Educación intercultural bilingüe</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-handshake"></i>
+                  <span>Economía comunitaria</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="candidate-footer">
+              <button
+                class="btn btn-outline"
+                onclick="showCandidateDetails('carlos-mamani')"
+              >
+                <i class="fas fa-info-circle"></i>
+                <span data-text="view-details">Ver Detalles</span>
+              </button>
+              <button
+                class="btn btn-primary"
+                onclick="startCandidateChat('carlos-mamani')"
+              >
+                <i class="fas fa-comments"></i>
+                <span data-text="ask-ai">Preguntar a IA</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Candidato 3 -->
+          <div
+            class="candidate-card"
+            data-party="derecha"
+            data-region="arequipa"
+          >
+            <div class="candidate-header">
+              <div class="candidate-photo">
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23dbeafe'/%3E%3Ccircle cx='100' cy='80' r='30' fill='%232563eb'/%3E%3Cpath d='M40 160 Q100 120 160 160' fill='%232563eb'/%3E%3C/svg%3E"
+                  alt="Ana Rodríguez"
+                />
+              </div>
+              <div class="candidate-info">
+                <h3 class="candidate-name">Ana Rodríguez</h3>
+                <p class="candidate-party">Alianza Empresarial</p>
+                <div class="candidate-stats">
+                  <span class="stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span>21% intención</span>
+                  </span>
+                  <span class="stat">
+                    <i class="fas fa-users"></i>
+                    <span>20 años exp.</span>
+                  </span>
+                </div>
+              </div>
+              <div class="candidate-actions">
+                <button
+                  class="action-btn favorite"
+                  onclick="toggleFavorite(this)"
+                >
+                  <i class="far fa-heart"></i>
+                </button>
+                <button
+                  class="action-btn compare"
+                  onclick="addToCompare('ana-rodriguez')"
+                >
+                  <i class="fas fa-balance-scale"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="candidate-proposals">
+              <h4 data-text="proposals-title">Principales Propuestas:</h4>
+              <div class="proposals-grid">
+                <div class="proposal-item">
+                  <i class="fas fa-chart-line"></i>
+                  <span>Crecimiento económico 6% anual</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-building"></i>
+                  <span>Inversión en infraestructura</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-handshake"></i>
+                  <span>Alianzas público-privadas</span>
+                </div>
+                <div class="proposal-item">
+                  <i class="fas fa-globe"></i>
+                  <span>Apertura comercial internacional</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="candidate-footer">
+              <button
+                class="btn btn-outline"
+                onclick="showCandidateDetails('ana-rodriguez')"
+              >
+                <i class="fas fa-info-circle"></i>
+                <span data-text="view-details">Ver Detalles</span>
+              </button>
+              <button
+                class="btn btn-primary"
+                onclick="startCandidateChat('ana-rodriguez')"
+              >
+                <i class="fas fa-comments"></i>
+                <span data-text="ask-ai">Preguntar a IA</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparador Flotante -->
+        <div class="comparison-panel" id="comparisonPanel">
+          <div class="comparison-header">
+            <h3 data-text="compare-candidates">Comparar Candidatos</h3>
+            <button class="close-btn" onclick="closeComparison()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="comparison-content" id="comparisonContent">
+            <p data-text="select-candidates">
+              Selecciona candidatos para comparar sus propuestas
+            </p>
+          </div>
+          <div class="comparison-actions">
+            <button class="btn btn-outline" onclick="clearComparison()">
+              <span data-text="clear-all">Limpiar Todo</span>
+            </button>
+            <button class="btn btn-primary" onclick="showDetailedComparison()">
+              <span data-text="detailed-comparison">Comparación Detallada</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solución Section -->
+    <section id="solucion" class="section solucion">
+      <div class="container">
+        <h2 class="section-title">Nuestra Solución: VOTI</h2>
+        <div class="solucion-grid">
+          <div class="modulo-card" data-module="chat">
+            <div class="modulo-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Chat Conversacional</h3>
+            <p>
+              IA neutral que responde preguntas políticas con información
+              verificada
+            </p>
+          </div>
+          <div class="modulo-card" data-module="comparador">
+            <div class="modulo-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h3>Comparador Político</h3>
+            <p>Compara propuestas y candidatos de manera objetiva y visual</p>
+          </div>
+          <div class="modulo-card" data-module="educacion">
+            <div class="modulo-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Educación Cívica</h3>
+            <p>
+              Aprende sobre el sistema político peruano de forma interactiva
+            </p>
+          </div>
+          <div class="modulo-card" data-module="accesibilidad">
+            <div class="modulo-icon">
+              <i class="fas fa-universal-access"></i>
+            </div>
+            <h3>Accesibilidad Total</h3>
+            <p>Disponible en quechua, aimara y otras lenguas nativas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Demo Section -->
+    <section id="demo" class="section demo">
+      <div class="container">
+        <h2 class="section-title">Prueba VOTI en Acción</h2>
+
+        <!-- Chat Demo -->
+        <div class="demo-container">
+          <div class="demo-tabs">
+            <button class="tab-btn active" data-tab="chat">Chat IA</button>
+            <button class="tab-btn" data-tab="comparador">Comparador</button>
+          </div>
+
+          <div class="demo-content">
+            <!-- Chat Demo -->
+            <div id="chat-demo" class="demo-panel active">
+              <div class="chat-container">
+                <div class="chat-header">
+                  <i class="fas fa-robot"></i>
+                  <span>VOTI Assistant</span>
+                  <span class="status">En línea</span>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                  <div class="message bot-message">
+                    <div class="message-content">
+                      ¡Hola! Soy VOTI, tu asistente de información política
+                      neutral. ¿En qué puedo ayudarte?
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-input-container">
+                  <div class="quick-questions">
+                    <button
+                      class="quick-btn"
+                      onclick="askQuestion('¿Qué propuestas tiene sobre educación?')"
+                    >
+                      Propuestas de educación
+                    </button>
+                    <button
+                      class="quick-btn"
+                      onclick="askQuestion('¿Cómo funciona el sistema electoral?')"
+                    >
+                      Sistema electoral
+                    </button>
+                    <button
+                      class="quick-btn"
+                      onclick="askQuestion('¿Qué es el voto informado?')"
+                    >
+                      Voto informado
+                    </button>
+                  </div>
+                  <div class="chat-input">
+                    <input
+                      type="text"
+                      id="chatInput"
+                      placeholder="Escribe tu pregunta aquí..."
+                    />
+                    <button onclick="sendMessage()">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comparador Demo -->
+            <div id="comparador-demo" class="demo-panel">
+              <div class="comparador-container">
+                <h3>Comparador de Propuestas</h3>
+                <div class="comparison-table">
+                  <div class="comparison-header">
+                    <div class="topic-column">Tema</div>
+                    <div class="candidate-column">Candidato A</div>
+                    <div class="candidate-column">Candidato B</div>
+                    <div class="candidate-column">Candidato C</div>
+                  </div>
+                  <div class="comparison-row" onclick="toggleDetails(this)">
+                    <div class="topic">
+                      <i class="fas fa-graduation-cap"></i>
+                      Educación
+                    </div>
+                    <div class="proposal">Inversión 6% del PBI</div>
+                    <div class="proposal">Educación gratuita universal</div>
+                    <div class="proposal">Tecnología en aulas</div>
+                  </div>
+                  <div class="comparison-row" onclick="toggleDetails(this)">
+                    <div class="topic">
+                      <i class="fas fa-heartbeat"></i>
+                      Salud
+                    </div>
+                    <div class="proposal">Hospitales regionales</div>
+                    <div class="proposal">Seguro universal</div>
+                    <div class="proposal">Telemedicina rural</div>
+                  </div>
+                  <div class="comparison-row" onclick="toggleDetails(this)">
+                    <div class="topic">
+                      <i class="fas fa-briefcase"></i>
+                      Empleo
+                    </div>
+                    <div class="proposal">Apoyo a MYPES</div>
+                    <div class="proposal">Trabajo remoto</div>
+                    <div class="proposal">Capacitación técnica</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo Funciona -->
+    <section class="section como-funciona">
+      <div class="container">
+        <h2 class="section-title">¿Cómo Funciona VOTI?</h2>
+        <div class="proceso-steps">
+          <div class="step" data-step="1">
+            <div class="step-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3>Recopilación</h3>
+            <p>Analizamos fuentes oficiales y verificadas</p>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>Procesamiento IA</h3>
+            <p>Nuestra IA procesa y neutraliza la información</p>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Verificación</h3>
+            <p>Validamos la precisión y neutralidad</p>
+          </div>
+          <div class="step" data-step="4">
+            <div class="step-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Acceso Ciudadano</h3>
+            <p>Información clara y accesible para todos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MIL y Cyber Wellness -->
+    <section class="section mil-wellness">
+      <div class="container">
+        <h2 class="section-title">Conexión con MIL y Cyber Wellness</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Pensamiento Crítico</h3>
+            <p>
+              Desarrollamos habilidades para evaluar información política de
+              manera objetiva
+            </p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Bienestar Digital</h3>
+            <p>
+              Promovemos un consumo saludable de información política en línea
+            </p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Alfabetización Mediática</h3>
+            <p>
+              Enseñamos a identificar fuentes confiables y detectar
+              desinformación
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tecnología -->
+    <section class="section tecnologia">
+      <div class="container">
+        <h2 class="section-title">Tecnología de Vanguardia</h2>
+        <div class="tech-stack">
+          <div class="tech-item">
+            <i class="fab fa-react"></i>
+            <span>React</span>
+          </div>
+          <div class="tech-item">
+            <i class="fab fa-python"></i>
+            <span>Django</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-fire"></i>
+            <span>Firebase</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-robot"></i>
+            <span>IA Generativa</span>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-cloud"></i>
+            <span>Cloud Computing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    < !-- Impacto y Público Objetivo -->
+    <section id="impacto" class="section impacto">
+      <div class="container">
+        <h2 class="section-title">Impacto Esperado</h2>
+        <div class="impacto-stats">
+          <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">Jóvenes más informados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50%</div>
+            <div class="stat-label">Reducción de desinformación</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Organizaciones aliadas</div>
+          </div>
+        </div>
+
+        <h3 class="publico-title">Nuestro Público Objetivo</h3>
+        <div class="publico-grid">
+          <div class="publico-card">
+            <i class="fas fa-user-graduate"></i>
+            <h4>Jóvenes (18-35 años)</h4>
+            <p>Ciudadanos que buscan información política clara y confiable</p>
+          </div>
+          <div class="publico-card">
+            <i class="fas fa-hands-helping"></i>
+            <h4>ONGs</h4>
+            <p>Organizaciones que promueven la participación ciudadana</p>
+          </div>
+          <div class="publico-card">
+            <i class="fas fa-university"></i>
+            <h4>Universidades</h4>
+            <p>Instituciones educativas que enseñan educación cívica</p>
+          </div>
+          <div class="publico-card">
+            <i class="fas fa-city"></i>
+            <h4>Gobiernos Locales</h4>
+            <p>Municipios que buscan mayor transparencia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section id="equipo" class="section equipo">
+      <div class="container">
+        <h2 class="section-title">Nuestro Equipo</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-avatar">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h4>Product Manager</h4>
+            <p>Estrategia y visión del producto</p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <i class="fas fa-code"></i>
+            </div>
+            <h4>Tech Lead</h4>
+            <p>Arquitectura y desarrollo técnico</p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h4>AI Specialist</h4>
+            <p>Desarrollo de modelos de IA</p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h4>UX/UI Designer</h4>
+            <p>Experiencia de usuario inclusiva</p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Data Analyst</h4>
+            <p>Análisis de información política</p>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <i class="fas fa-language"></i>
+            </div>
+            <h4>Linguist</h4>
+            <p>Traducción a lenguas nativas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ffffff'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='%232563eb' font-size='32' font-weight='bold'%3EV%3C/text%3E%3C/svg%3E"
+              alt="VOTI Logo"
+              class="footer-logo"
+            />
+            <div>
+              <h4>VOTI</h4>
+              <p>Información política clara, neutral y verificada</p>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-column">
+              <h5>Producto</h5>
+              <ul>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#solucion">Características</a></li>
+                <li><a href="#tecnologia">Tecnología</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h5>Empresa</h5>
+              <ul>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#impacto">Impacto</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h5>Contacto</h5>
+              <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> info@voti.pe</p>
+                <p><i class="fas fa-phone"></i> +51 999 999 999</p>
+              </div>
+              <div class="social-links">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+                <a href="#" aria-label="Twitter"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" aria-label="LinkedIn"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+                <a href="#" aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-demo">
+            <button class="btn btn-primary" onclick="scrollToDemo()">
+              <i class="fas fa-rocket"></i>
+              Probar Demo
+            </button>
+          </div>
+          <div class="footer-copy">
+            <p>&copy; 2024 VOTI. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
